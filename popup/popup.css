@@ -66,6 +66,39 @@ input:invalid, input.bad { border-color: #ed4956; }
 .sub-title { display: block; font-size: 11px; color: var(--muted); margin: 4px 0 2px; }
 .hint { margin: 6px 0 0; font-size: 11px; color: var(--muted); }
 
+.download { border-top: 0; padding-top: 4px; }
+
+.tabs { display: flex; gap: 4px; margin: 2px 0 8px; padding: 3px; border-radius: 8px; background: var(--field); border: 1px solid var(--line); }
+.tabs button {
+  flex: 1;
+  padding: 5px 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tabs button[aria-selected="true"] { background: var(--bg); color: var(--fg); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+.panel[hidden] { display: none; }
+.panel > section:first-child { border-top: 0; }
+
+#download {
+  width: 100%;
+  padding: 8px 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+#download:hover:not(:disabled) { background: #1877f2; }
+#download:disabled { opacity: .45; cursor: default; }
+
 footer { border-top: 1px solid var(--line); padding-top: 10px; }
 .stats { margin: 0; font-weight: 500; }
 

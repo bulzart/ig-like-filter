@@ -1,23 +1,29 @@
 {
   "manifest_version": 3,
-  "name": "IG Like Filter",
-  "version": "1.0.0",
-  "description": "Only see Instagram posts and reels whose like count is inside your range. Out-of-range posts are dropped from Instagram's own responses before they render.",
+  "name": "Like Filter for Instagram & TikTok",
+  "version": "1.3.0",
+  "description": "Only see Instagram and TikTok posts whose like count is inside your range, keep a few ready ahead, and download the video you are watching.",
   "minimum_chrome_version": "111",
   "permissions": ["storage"],
   "action": {
-    "default_title": "IG Like Filter",
+    "default_title": "Like Filter",
     "default_popup": "popup/popup.html"
   },
   "content_scripts": [
     {
       "matches": ["https://www.instagram.com/*"],
-      "js": ["src/main.js"],
+      "js": ["src/common.js", "src/instagram.js"],
       "run_at": "document_start",
       "world": "MAIN"
     },
     {
-      "matches": ["https://www.instagram.com/*"],
+      "matches": ["https://www.tiktok.com/*"],
+      "js": ["src/common.js", "src/tiktok.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://www.instagram.com/*", "https://www.tiktok.com/*"],
       "js": ["src/bridge.js"],
       "run_at": "document_start"
     }

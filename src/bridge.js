@@ -1,9 +1,10 @@
-// IG Like Filter: extension-world bridge (ISOLATED world, document_start).
+// Like Filter: extension-world bridge (ISOLATED world, document_start), on Instagram and TikTok.
 // The page-world filter cannot read chrome.storage, so this script hands settings over:
-//   - mirrors them into localStorage, which main.js reads synchronously at document_start
+//   - mirrors them into localStorage, which common.js reads synchronously at document_start
 //     (before the server-rendered first page is parsed);
 //   - posts every change to the page so it applies without a reload;
-//   - keeps the latest stats from the page for the popup.
+//   - keeps the latest stats from the page for the popup;
+//   - forwards the popup's "Download current video" to the page.
 (() => {
   'use strict';
   const LS_KEY = 'iglf:settings';
@@ -27,5 +28,9 @@
 
   chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
     if (msg && msg.type === 'iglf:getStats') sendResponse(lastStats);
+    if (msg && msg.type === 'iglf:download') {
+      window.postMessage({ __iglf: 'download' }, location.origin);
+      sendResponse(true);
+    }
   });
 })();
