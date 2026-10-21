@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>IG Like Filter</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>IG Like Filter</h1>
+    <label class="switch" title="Turn the filter on or off">
+      <input type="checkbox" id="enabled">
+      <span></span>
+    </label>
+  </header>
+
+  <section>
+    <h2>Like range</h2>
+    <div class="range">
+      <label>Min<input id="minLikes" type="text" inputmode="decimal" placeholder="0" autocomplete="off"></label>
+      <span class="dash">to</span>
+      <label>Max<input id="maxLikes" type="text" inputmode="decimal" placeholder="no limit" autocomplete="off"></label>
+    </div>
+    <div class="presets" id="presets">
+      <button data-min="1000">1K+</button>
+      <button data-min="10000">10K+</button>
+      <button data-min="100000">100K+</button>
+      <button data-min="1000000">1M+</button>
+    </div>
+    <p class="hint">Accepts 2500, 2.5k or 1.2m.</p>
+  </section>
+
+  <section>
+    <h2>Filter</h2>
+    <label class="row"><input type="radio" name="scope" value="all"> All posts</label>
+    <label class="row"><input type="radio" name="scope" value="videos"> Videos only (photos always shown)</label>
+  </section>
+
+  <section>
+    <h2>Where</h2>
+    <label class="row"><input type="checkbox" id="surf-feed"> Home feed</label>
+    <label class="row"><input type="checkbox" id="surf-reels"> Reels tab</label>
+    <div class="sub">
+      <span class="sub-title">In the home feed, filter:</span>
+      <label class="row"><input type="checkbox" id="inc-following"> Accounts you follow</label>
+      <label class="row"><input type="checkbox" id="inc-suggested"> Suggested posts</label>
+      <label class="row"><input type="checkbox" id="inc-ads"> Ads (feed and reels)</label>
+    </div>
+  </section>
+
+  <section>
+    <h2>Posts with hidden like counts</h2>
+    <select id="hiddenLikes">
+      <option value="count">Use the count Instagram sends</option>
+      <option value="keep">Always show</option>
+      <option value="remove">Always hide</option>
+    </select>
+  </section>
+
+  <section>
+    <h2>Empty pages</h2>
+    <label class="row inline">Show a page anyway after
+      <input id="emptyPageCap" type="number" min="0" max="100" step="1"> empty pages in a row</label>
+    <p class="hint">When no post in a page is in range, Instagram asks for the next one about every 3 seconds. 0 means keep searching without limit.</p>
+    <label class="row"><input type="checkbox" id="showPill"> Show the status pill on Instagram</label>
+  </section>
+
+  <footer>
+    <p id="stats" class="stats">Open Instagram to see stats.</p>
+    <p class="hint">Posts already removed come back after a page reload.</p>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

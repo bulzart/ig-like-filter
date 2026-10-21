@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "IG Like Filter",
+  "version": "1.0.0",
+  "description": "Only see Instagram posts and reels whose like count is inside your range. Out-of-range posts are dropped from Instagram's own responses before they render.",
+  "minimum_chrome_version": "111",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "IG Like Filter",
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.instagram.com/*"],
+      "js": ["src/main.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://www.instagram.com/*"],
+      "js": ["src/bridge.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
